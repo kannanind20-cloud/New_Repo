@@ -6,6 +6,8 @@ from selenium.webdriver.chrome.options import Options
 
 def before_all(context):
     options = Options()
+    options.add_argument("--headless=new")
+    options.add_argument("--window-size=1920,1080")
     # options.add_argument("--headless")  # ❌ keep this commented if you want UI
 
     context.driver = webdriver.Chrome(options=options)
