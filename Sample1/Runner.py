@@ -1,9 +1,13 @@
+import os
 from behave.__main__ import main
 
 if __name__ == "__main__":
+    if not os.path.exists("reports"):
+        os.makedirs("reports")
+
     main([
         "Sample1/Feature_File",
-        "--format", "html",
+        "--format", "behave_html_formatter:HTMLFormatter",
         "--outfile", "reports/report.html"
     ])
 # from behave.__main__ import main
