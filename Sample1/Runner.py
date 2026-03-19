@@ -1,5 +1,6 @@
 import os
 from behave.__main__ import main
+from datetime import datetime
 
 if __name__ == "__main__":
     if not os.path.exists("reports"):
@@ -10,6 +11,13 @@ if __name__ == "__main__":
         "--format", "behave_html_formatter:HTMLFormatter",
         "--outfile", "reports/report.html"
     ])
+
+def after_step(context, step):
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    file_name = f"reports/screenshots/{step.name}_{timestamp}.png"
+    file_name = file_name.replace(" ", "_")
+
+    context.driver.save_screenshot(file_name)
 # from behave.__main__ import main
 #
 # if __name__ == "__main__":
